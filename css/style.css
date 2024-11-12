@@ -1,0 +1,107 @@
+/* Basic Shop Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+  
+  header {
+    background-color: #007bff;
+    padding: 15px;
+    color: white;
+    text-align: center;
+  }
+  
+/* Navigation */
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 10px;
+    color: white;
+    padding: 10px 20px; /* Add padding to the nav bar */
+    overflow: hidden;
+  }
+
+.nav-left {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1rem;/*for text size you should rellay use rem as it helps people with sight issues better as when they increase their browser text size it will adjust the page better with fewer issues.
+    */
+  }
+
+.nav-right {
+    list-style: none;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    font-size: 1rem;
+}
+
+.nav-right li {
+    margin: 0 10px;
+}
+
+.nav-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.nav-right a:hover {
+    color: #f7f7f7;
+    text-decoration: underline darkblue;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    animation: underlineAnimation 0.3s ease-in-out;
+}
+
+.nav-right a.active {
+    color: #f7f7f7;
+    text-decoration: underline darkblue;
+    text-decoration-thickness: 2px; /* This is the thickness of the underline */
+    text-underline-offset: 4px; /* This is the offset of the underline */
+}
+
+@keyframes underlineAnimation {
+    from {
+        text-decoration-color: transparent;
+        text-decoration-thickness: 0;
+    }
+    to {
+        text-decoration-color: darkblue;
+        text-decoration-thickness: 2px;
+    }
+}
+
+/* ------Products------ */
+.products {
+    padding: 20px;
+    text-align: center;
+}
+
+.product {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 15px;
+    width: 200px;
+    background-color: white;
+}
+
+button {
+    padding: 8px 12px;
+    margin-top: 10px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
