@@ -36,33 +36,33 @@ $(document).ready(function() {
 
   // Update cart summary
   function updateCartSummary() {
-    const totalItems = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity || 1, 0);
     const totalCost = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
     $("#totalItems").text(totalItems);
     $("#totalCost").text(totalCost.toFixed(2));
   }
 
   // Event listener for incrementing quantity
-  $(document).on("click", ".plus", function() {
-    const index = $(this).data("index");
-    cart[index].quantity = (cart[index].quantity || 1) + 1;
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCartItems();
-    updateCartSummary();
-  });
+$(document).on("click", ".plus", function() {
+  const index = $(this).data("index");
+  cart[index].quantity = (cart[index].quantity || 1) + 1;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCartItems();
+  updateCartSummary();
+});
 
-  // Event listener for decrementing quantity
-  $(document).on("click", ".minus", function() {
-    const index = $(this).data("index");
-    if (cart[index].quantity > 1) {
-      cart[index].quantity -= 1;
-    } else {
-      cart.splice(index, 1); // Remove the item from the cart if quantity is 1 and minus is clicked
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCartItems();
-    updateCartSummary();
-  });
+// Event listener for decrementing quantity
+$(document).on("click", ".minus", function() {
+  const index = $(this).data("index");
+  if (cart[index].quantity > 1) {
+    cart[index].quantity -= 1;
+  } else {
+    cart.splice(index, 1); // Remove the item from the cart if quantity is 1 and minus is clicked
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCartItems();
+  updateCartSummary();
+});
 
   // Event listener for removing an item
   $(document).on("click", ".remove-item", function() {

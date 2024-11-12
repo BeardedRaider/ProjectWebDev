@@ -128,7 +128,18 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Cart Page Styles */
+/* Floating animation for the cart icon */
+@keyframes floatCart {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-cart {
+  animation: floatCart 0.5s ease;
+}
+
+/* ----Cart Page Styles---- */
 .cart-container {
     display: flex;
     justify-content: space-between;
@@ -236,9 +247,6 @@ button:hover {
     text-align: center;
   }
   
-
-  /* ---Checkout page---
-
 /* ------ Checkout Page Styles ------ */
 
 /* Checkout Container */
@@ -286,8 +294,8 @@ button:hover {
 }
 
 .checkout-form input {
-  width: 100%;
-  padding: 10px;
+  width: 95%;
+  padding: 15px;
   margin-top: 5px;
   border: 1px solid #ddd;
   border-radius: 5px;
