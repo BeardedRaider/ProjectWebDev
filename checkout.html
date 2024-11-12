@@ -19,36 +19,39 @@
             <li><a href="checkout.html" class="active">Checkout</a></li>
         </ul>
     </nav>
-</header>
+  </header>
 
-<section class="checkout-container">
-  <h1>Checkout</h1>
+  <section class="checkout-container">
+    <h1>Checkout</h1>
 
-  <!-- Order Summary Section -->
-  <div class="order-summary">
-    <h2>Order Summary</h2>
-    <p>Total Items: <span id="totalItems">0</span></p>
-    <p>Total Cost: $<span id="totalCost">0.00</span></p>
-  </div>
+    <!-- Order Summary Section -->
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div id="productList">
+        <!-- Product items will be dynamically added here -->
+      </div>
+      <p>Total Items: <span id="totalItems">0</span></p>
+      <p>Total Cost: $<span id="totalCost">0.00</span></p>
+    </div>
 
-  <!-- Checkout Form Section -->
-  <form id="checkoutForm" class="checkout-form">
-    <h2>Billing Information</h2>
-    <label for="name">Name:</label>
-    <input type="text" id="name" placeholder="Full Name" required>
+    <!-- Checkout Form Section -->
+    <form id="checkoutForm" class="checkout-form">
+      <h2>Billing Information</h2>
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Full Name" required>
 
-    <label for="address">Address:</label>
-    <input type="text" id="address" placeholder="Shipping Address" required>
+      <label for="address">Address:</label>
+      <input type="text" id="address" placeholder="Shipping Address" required>
 
-    <label for="card">Credit Card Number:</label>
-    <input type="text" id="card" placeholder="xxxx-xxxx-xxxx-xxxx" required>
+      <label for="card">Credit Card Number:</label>
+      <input type="text" id="card" placeholder="xxxx-xxxx-xxxx-xxxx" required>
 
-    <button type="button" id="submitOrder">Submit Order</button>
-  </form>
-</section>
+      <button type="button" id="submitOrder">Submit Order</button>
+    </form>
+  </section>
 
-  
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="js/checkout.js"></script>
 </body>
 </html>
+

@@ -3,7 +3,25 @@ $(document).ready(function() {
   renderCartItems();
   updateCartSummary();
 
-  // Render cart items in the cart container
+  // Check if item is already in cart and increment quantity if so
+  function addToCart(product) {
+    const existingItem = cart.find(item => item.id === product.id);
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  // Handle "Add to Cart" button clicks
+  $(".addToCart").click(function() {
+    const productId = $(this).data("id");
+    const product = products.find(p => p.id === productId);
+    addToCart(product);
+  });
+
   function renderCartItems() {
     $("#cartItems").empty();
     if (cart.length === 0) {

@@ -286,6 +286,14 @@ button:hover {
   margin-bottom: 10px;
 }
 
+/* Style for each item in the order summary */
+.order-summary #productList p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
 .checkout-form label {
   display: block;
   font-weight: bold;

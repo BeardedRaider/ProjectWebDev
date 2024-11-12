@@ -1,17 +1,31 @@
 $(document).ready(function() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  displayOrderSummary();
 
-  // Display Order Summary
+  // Function to display order summary with each product's name and quantity
   function displayOrderSummary() {
-    const totalItems = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
-    const totalCost = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+    $("#productList").empty(); // Clear any existing products
+
+    let totalItems = 0;
+    let totalCost = 0;
+
+    cart.forEach(item => {
+      const quantity = item.quantity || 1;
+      const itemCost = item.price * quantity;
+      totalItems += quantity;
+      totalCost += itemCost;
+
+      // Append each item in order summary
+      $("#productList").append(`
+        <p>
+          <strong>${item.name}</strong> - Quantity: ${quantity} - $${itemCost.toFixed(2)}
+        </p>
+      `);
+    });
 
     $("#totalItems").text(totalItems);
     $("#totalCost").text(totalCost.toFixed(2));
   }
-
-  // Call displayOrderSummary on page load
-  displayOrderSummary();
 
   // Handle form submission
   $("#submitOrder").click(function() {
@@ -30,5 +44,6 @@ $(document).ready(function() {
     window.location.href = "index.html"; // Redirect to home or a confirmation page
   });
 });
+
 
   
