@@ -4,21 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Cart</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
-    <h1>Your Shopping Cart</h1>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="cart.html" class="active">Cart</a>
-        <a href="checkout.html">Checkout</a>
+        <div class="nav-left">
+            Shane Cummings<br />
+            B01740631
+        </div>
+        <ul class="nav-right">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html" class="cart-icon">
+              <span class="material-icons" id="cartIcon">shopping_cart</span>
+              <span id="cartCount">0</span></a>
+          </li>
+        </ul>
     </nav>
-  </header>
-  <section id="cartItems">
-    <!-- Cart items will be loaded here -->
+</header>
+
+  <section class="cart-container">
+    <h1>Your Shopping Cart</h1>
+    <div id="cartItems" class="cart-items">
+      <!-- Cart items will be dynamically loaded here -->
+    </div>
+    <div class="cart-summary">
+      <h2>Cart Summary</h2>
+        <p>Total Items: <span id="totalItems">0</span></p>
+        <p>Total Cost: $<span id="totalCost">0.00</span></p>
+      <button id="checkoutButton">Proceed to Checkout</button>
+    </div>
   </section>
-  <button id="checkoutButton">Proceed to Checkout</button>
+
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="js/cart.js"></script>
 </body>

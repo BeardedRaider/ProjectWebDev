@@ -5,27 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>Checkout</h1>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="cart.html">Cart</a>
-        <a href="checkout.html" class="active">Checkout</a>
+        <div class="nav-left">
+            Shane Cummings<br />
+            B01740631
+        </div>
+        <ul class="nav-right">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="checkout.html" class="active">Checkout</a></li>
+        </ul>
     </nav>
-  </header>
-  <section>
-    <form id="checkoutForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required>
-      <label for="address">Address:</label>
-      <input type="text" id="address" required>
-      <label for="card">Credit Card Number:</label>
-      <input type="text" id="card" required>
-      <button type="button" id="submitOrder">Submit Order</button>
-    </form>
-  </section>
+</header>
+
+<section class="checkout-container">
+  <h1>Checkout</h1>
+
+  <!-- Order Summary Section -->
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <p>Total Items: <span id="totalItems">0</span></p>
+    <p>Total Cost: $<span id="totalCost">0.00</span></p>
+  </div>
+
+  <!-- Checkout Form Section -->
+  <form id="checkoutForm" class="checkout-form">
+    <h2>Billing Information</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Full Name" required>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" placeholder="Shipping Address" required>
+
+    <label for="card">Credit Card Number:</label>
+    <input type="text" id="card" placeholder="xxxx-xxxx-xxxx-xxxx" required>
+
+    <button type="button" id="submitOrder">Submit Order</button>
+  </form>
+</section>
+
+  
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="js/checkout.js"></script>
 </body>

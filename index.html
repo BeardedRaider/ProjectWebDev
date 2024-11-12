@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
   </head>
   <body>
     <header>
-        
         <nav>
             <div class="nav-left">
                 Shane Cummings<br />
@@ -17,11 +18,14 @@
             </div>
             <ul class="nav-right">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="cart.html" class="cart-icon">
+                    <span class="material-icons" id="cartIcon">shopping_cart</span>
+                    <span id="cartCount">0</span></a>
+                </li>
             </ul>
         </nav>
     </header>
+    
     <section class="products">
     <h1>Welcome to Our Basic Shop</h1>
       <h2>Products</h2>
