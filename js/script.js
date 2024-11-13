@@ -33,33 +33,49 @@ $(document).ready(function() {
     const product = products.find(p => p.id === productId);
 
     // Add product to cart
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart)); // Save to localStorage
-
-    // Update cart count
-    updateCartCount();
-
-    // Animate cart icon
-    animateCartIcon();
+    addToCart(product);  // Consolidate quantity for items already in cart
+    animateCartIcon();   // Animate cart icon on addition
   });
+
+  // Function to add item to cart with quantity consolidation
+  function addToCart(product) {
+    const existingItem = cart.find(item => item.id === product.id);
+    if (existingItem) {
+        // If item already in cart, increase its quantity
+        existingItem.quantity += 1;
+    } else {
+    // Add new item with quantity property set to 1
+    cart.push({ ...product, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));  // Save to localStorage
+    updateCartCount();
+  }
 
   // Function to update the cart count in the navbar
   function updateCartCount() {
-    $("#cartCount").text(cart.length);
+    const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+    $("#cartCount").text(totalCount);
   }
 
   // Function to animate the cart icon on item addition
   function animateCartIcon() {
-    $("#cartIcon").animate({
-      opacity: 0.5,
-      fontSize: "30px"
-    }, 200, function() {
-      $(this).animate({
-        opacity: 1,
-        fontSize: "24px"
-      }, 200);
-    });
-  }
+    $("#cartCount")
+    .css("background-color", "red")  // Ensure background color remains red
+    .animate({
+      fontSize: "20px",
+      opacity: 0.8
+    }, 200)
+    .animate({
+      fontSize: "12px",
+      opacity: 1
+    }, 200)
+    .animate({
+      top: "-5px"
+    }, 100)
+    .animate({
+      top: "0px"
+    }, 100);
+}
 });
 
   
