@@ -4,6 +4,12 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function () {
+  $(".flip-button").click(function () {
+    $(".rotating-card").toggleClass("flipped");
+  });
+});
+
 $(document).ready(function() {
   const products = [
     { id: 1, name: "Product 1", price: 10 },
@@ -84,4 +90,28 @@ $(document).ready(function() {
 }
 });
 
+/*----- card animation -----*/
+const cardContainer = document.querySelector('.rotating-card-container');
+const card = document.querySelector('.rotating-card');
+const flipButtons = document.querySelectorAll('.flip-button');
+
+// Hover Axis-Following Animation
+cardContainer.addEventListener('mousemove', (e) => {
+  const { left, top, width, height } = cardContainer.getBoundingClientRect();
+  const x = (e.clientX - left - width / 2) / 10;
+  const y = -(e.clientY - top - height / 2) / 10;
+
+  card.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+});
+
+cardContainer.addEventListener('mouseleave', () => {
+  card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+});
+
+// Flip Animation
+flipButtons.forEach((button) =>
+  button.addEventListener('click', () => {
+    card.classList.toggle('flipped');
+  })
+);
   

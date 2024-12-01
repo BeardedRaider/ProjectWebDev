@@ -11,7 +11,7 @@
   </head>
   <body>
     <header>
-        <nav>
+        <nav class="horizontal-navbar">
             <div class="nav-left">
                 Shane Cummings<br />
                 B01740631
@@ -27,14 +27,27 @@
             </ul>
         </nav>
     </header>
-    
-    <section class="products">
-    <h1>Welcome to Our Basic Shop</h1>
-      <h2>Products</h2>
-      <div id="productList">
-        <!-- Products will be added here dynamically -->
-      </div>
-    </section>
+
+    <div class="layout">
+      <aside class="vertical-sidebar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section class="products">
+        <h1>Welcome to Our Basic Shop</h1>
+          <h2>Products</h2>
+          <div id="productList">
+            <!-- Products will be added here dynamically -->
+          </div>
+        </section>
+      </main>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script src="js/script.js"></script>

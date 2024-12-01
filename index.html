@@ -5,68 +5,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
 
     <title>HomePage</title>
   </head>
   <body>
     <header>
-        <nav>
-            <div class="nav-left">
-                Shane Cummings<br />
-                B01740631
-            </div>
-            <ul class="nav-right">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="cart.html" class="cart-icon">
-                    <span class="material-icons" id="cartIcon">shopping_cart</span>
-                    <span id="cartCount">0</span></a>
-                </li>
-                <li><a href="feedback.html">Feedback</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <aside class="vertical-sidebar">
-      <ul>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </aside>
-
-    <main>
-      <section id="about" class="rotating-card">
-        <div class="card">
-          <div class="card-front">
-            <img src="images/profile.jpg" alt="Profile Image" />
-            <h3>Shane Cummings</h3>
-            <p>Web Developer</p>
-            <button class="info-btn">More About Me</button>
-          </div>
-          <div class="card-back">
-            <h3>About Me</h3>
-            <p>
-              Hi, I'm Shane Cummings, a passionate web developer with interests in
-              front-end design and interactive applications.
-            </p>
-            <button class="info-btn">Back</button>
-          </div>
+      <nav class="horizontal-navbar">
+        <div class="nav-left">
+          Shane Cummings<br />
+          B01740631
         </div>
-      </section>
-
-      <section id="projects">
-        <h2>Projects</h2>
-        <p>Explore my past and ongoing web development projects here.</p>
-      </section>
-
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me via my contact form.</p>
-      </section>
-      
-    </main>
+        <ul class="nav-right">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html" class="cart-icon">
+              <span class="material-icons" id="cartIcon">shopping_cart</span>
+              <span id="cartCount">0</span>
+            </a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+  
+    <div class="layout">
+      <aside class="vertical-sidebar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </aside>
+  
+      <main>
+        <section class="rotating-card-container">
+          <div class="rotating-card">
+            <!-- Front Side -->
+            <div class="card-side front">
+              <div class="card-image">
+                <div class="image-container">
+                  <img src="images/PrideNB.png" alt="Profile Picture" />
+                </div>
+              </div>
+              <div class="card-info">
+                <h2>Shane Cummings</h2>
+                <p>Web Developer</p>
+                <div class="social-icons">
+                  <a href="https://twitter.com" target="_blank" class="icon">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" class="icon">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="https://github.com" target="_blank" class="icon">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+                <button class="flip-button">About Me</button>
+              </div>
+            </div>
+        
+            <!-- Back Side -->
+            <div class="card-side back">
+              <div class="bio-content">
+                <h2>About Me</h2>
+                <p>
+                  Hi, I'm Shane, a passionate web developer with experience in
+                  building dynamic, responsive websites. I love coding, learning new
+                  technologies, and creating elegant solutions to complex problems.
+                </p>
+                <p>Skills: HTML, CSS, JavaScript, jQuery</p>
+                <button class="flip-button back">Go Back</button>
+              </div>
+            </div>
+          </div>
+        </section>        
+      </main>
+    </div>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 

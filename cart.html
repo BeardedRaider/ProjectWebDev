@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-    <nav>
+    <nav class="horizontal-navbar">
         <div class="nav-left">
             Shane Cummings<br />
             B01740631
@@ -23,21 +23,33 @@
     </nav>
 </header>
 
-  <div class="header-container">
-    <h1>Your Shopping Cart</h1>
-  </div>
-  <section class="cart-container">
-    <div id="cartItems" class="cart-items">
-      <!-- Cart items will be dynamically loaded here -->
-    </div>
-    <div class="cart-summary">
-      <h2>Cart Summary</h2>
-        <p>Total Items: <span id="totalItems">0</span></p>
-        <p>Total Cost: $<span id="totalCost">0.00</span></p>
-      <button id="checkoutButton">Proceed to Checkout</button>
-    </div>
-  </section>
+  <div class="layout">
+    <aside class="vertical-sidebar">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </aside>
 
+
+    <main>
+      <div class="header-container">
+        <h1>Your Shopping Cart</h1>
+      </div>
+      <section class="cart-container">
+        <div id="cartItems" class="cart-items">
+          <!-- Cart items will be dynamically loaded here -->
+        </div>
+        <div class="cart-summary">
+          <h2>Cart Summary</h2>
+            <p>Total Items: <span id="totalItems">0</span></p>
+            <p>Total Cost: $<span id="totalCost">0.00</span></p>
+          <button id="checkoutButton">Proceed to Checkout</button>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="js/cart.js"></script>

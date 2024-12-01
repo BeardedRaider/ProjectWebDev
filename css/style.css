@@ -13,31 +13,26 @@ header {
   text-align: center;
 }
 
-/* Navigation */
-
-nav {
+/* Horizontal Navbar */
+.horizontal-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
   color: white;
-  padding: 10px 20px; /* Add padding to the nav bar */
-  overflow: hidden;
 }
 
 .nav-left {
-  margin: 10px;
-  padding: 10px;
-  font-size: 1rem; /*for text size you should rellay use rem as it helps people with sight issues better as when they increase their browser text size it will adjust the page better with fewer issues.
-    */
+  margin: 0;
+  font-size: 1rem;
 }
 
 .nav-right {
   list-style: none;
-  margin: 10px;
-  padding: 10px;
   display: flex;
-  font-size: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-right li {
@@ -50,26 +45,37 @@ nav {
   font-size: 1rem;
 }
 
+.nav-right a:hover {
+  text-decoration: underline;
+  color: #ffdd57;
+}
+
+/* Layout Container */
+.layout {
+  display: flex;
+  /* height: calc(93.3vh); Subtract navbar height from the total viewport */
+  height: calc(100vh - 86px);
+}
+
 /* Vertical Sidebar */
 .vertical-sidebar {
-  position: fixed;
-  top: 70px; /* Adjust to match the height of your navbar */
-  left: 0;
-  width: 200px;
-  height: calc(100vh - 70px); /* Full height minus the navbar height */
+  width: 150px;
   background-color: #007bff;
+  color: white;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .vertical-sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .vertical-sidebar li {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .vertical-sidebar a {
@@ -83,11 +89,19 @@ nav {
   color: #ffdd57;
 }
 
-/* Main Content Adjustments */
+/* Main Content */
 main {
-  margin-left: 220px; /* Add margin to prevent overlap with the sidebar */
+  flex: 1; /* Main content expands to fill the space */
   padding: 20px;
+  background-color: #f7f7f7;
+  overflow-y: auto;
 }
+
+.horizontal-navbar + .layout {
+  margin-top: 0; /* Prevents extra spacing between navbar and layout */
+}
+
+
 
 /* Cart Icon with Counter */
 .cart-icon {
@@ -140,96 +154,205 @@ main {
   }
 }
 
-
-/* ------Rotating Card Styles------ */
-.rotating-card {
+/* -----Rotating Card Container----- */
+.rotating-card-container {
   display: flex;
   justify-content: center;
-  margin: 50px 0;
+  align-items: center;
+  height: 70vh;
 }
 
-.card {
+.rotating-card {
   width: 300px;
   height: 400px;
   perspective: 1000px;
   position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-.card-front, .card-back {
+.card-side {
   width: 100%;
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s ease-in-out;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-side.front {
+  background-color: #007bff;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  transform: rotateY(0deg); /* Default front position */
+}
+
+.card-side.back {
+  background-color: #fff;
+  transform: rotateY(180deg); /* Default back position */
+  display: flex;
   align-items: center;
   justify-content: center;
-  background: #007bff;
-  color: white;
-  text-align: center;
   padding: 20px;
-  transition: transform 0.6s;
+  box-sizing: border-box;
 }
 
-.card-front {
-  background: linear-gradient(135deg, #007bff, #0056b3);
-}
-
-.card-back {
-  background: #0056b3;
+/* Rotate card on button click */
+.rotating-card.flipped .front {
   transform: rotateY(180deg);
 }
 
-.card img {
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
+.rotating-card.flipped .back {
+  transform: rotateY(0deg);
+}
+
+/* ------Card Image------ */
+.card-image {
+  background-color: #007bff; /* Fallback color in case the background image doesn't load */  position: relative;
+  background-image: url('/images/invade.jpg'); /* Replace with the path to your background image */
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Centers the image within the section */
+  height: 50%;
+}
+
+.image-container {
+  position: absolute;
+  bottom: -20px; /* Pulls the image halfway out of the card-image section */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px; /* Width of the circular image */
+  height: 100px; /* Height of the circular image */
+  border-radius: 50%; /* Makes the image circular */
+  overflow: hidden; /* Ensures the image fits within the circle */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
+  padding: 3px; /* Space for the rainbow border */
+
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Ensures the image inside the container is circular */
+  object-fit: cover; /* Ensures the image scales nicely inside the circle */
+  background-color: white; /* Fallback for transparency */
+}
+
+
+
+/* ------Card Info------ */
+.card-info {
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.card-info h2 {
+  margin: 10px 0 5px;
+}
+
+.card-info p {
+  margin: 5px 0 15px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 15px;
 }
 
-.card h3 {
-  margin: 10px 0;
+.icon {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  border: 1px solid white;
+  padding: 5px 8px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.card p {
-  font-size: 0.9rem;
+.icon:hover {
+  background-color: white;
+  color: #007bff;
 }
 
-.card .info-btn {
-  margin-top: 20px;
+/* ------Flip Button------ */
+.flip-button {
   padding: 10px 15px;
-  background: white;
+  background-color: white;
   color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.card .info-btn:hover {
-  background: #ffdd57;
-  color: #0056b3;
+.flip-button:hover {
+  background-color: #007bff;
+  color: white;
 }
 
-/* Hover Effect */
-.card:hover .card-front {
-  transform: rotateY(180deg);
+/* Back Side Content */
+.bio-content {
+  text-align: center;
 }
 
-.card:hover .card-back {
-  transform: rotateY(360deg);
+.bio-content h2 {
+  margin-bottom: 10px;
+  color: #007bff;
 }
 
-.card.flipped .card-front {
-  transform: rotateY(180deg);
+.bio-content p {
+  font-size: 0.95rem;
+  color: #333;
 }
 
-.card.flipped .card-back {
-  transform: rotateY(360deg);
+/* ------Social Icons Styling------ */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 15px 0;
 }
+
+.social-icons .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #a5b1be;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: transform 0.3s, background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 20px; /* For Font Awesome or Material Icons */
+}
+
+.social-icons .icon:hover {
+  transform: scale(1.1);
+  background-color: #007bff;
+  color: white;
+}
+
+.social-icons .icon span {
+  font-size: 24px;
+  color: #007bff;
+}
+
+.social-icons .icon:hover span {
+  color: white;
+}
+
 
 /* ------Products------ */
 .products {
