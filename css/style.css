@@ -157,6 +157,7 @@ main {
 }
 
 /* -----Rotating Card Container----- */
+/* -----Rotating Card Container----- */
 .rotating-card-container {
   display: flex;
   justify-content: center;
@@ -183,7 +184,7 @@ main {
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
 }
 
-/* Holographic Shine*/
+/* Holographic Shine */
 .rotating-card::before {
   content: '';
   position: absolute;
@@ -200,43 +201,12 @@ main {
   transition: background-position 0.1s ease;
 }
 
-.rotating-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300%; /* Oversized for smooth mouse tracking */
-  height: 300%;
-  /*couldnot get the radial gradient to work for making a holographic shine effect*/
-  /* background: radial-gradient(circle, 
-    rgba(255, 0, 0, 0.2), 
-    rgba(0, 255, 0, 0.2), 
-    rgba(0, 0, 255, 0.2)
-  ); */
-  pointer-events: none;
-  transform: translate(-150%, -150%);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  z-index: 2; /* Ensure it's on top of the card */
-}
-
-
-/* Show the shine when hovering */
-.rotating-card-container:hover .rotating-card::after {
-  opacity: 1;
-}
-
-/* Shine Follows Mouse */
-.rotating-card-container:hover .rotating-card {
-  --shine-x: 50%;
-  --shine-y: 50%;
-}
-
-.rotating-card-container:hover .rotating-card::after {
+/* Hover Shine Opacity */
+.rotating-card-container:hover .rotating-card::before {
   opacity: 0.7;
 }
 
-/*-----card sides----- */
+/* -----Card Sides----- */
 .card-side {
   width: 100%;
   height: 100%;
@@ -247,7 +217,6 @@ main {
   overflow: hidden;
 }
 
-/*-----card front----- */
 .card-side.front {
   background-color: #007bff;
   transform: rotateY(0deg); /* Default front position */
@@ -256,7 +225,6 @@ main {
   justify-content: space-between;
 }
 
-/*-----card back----- */
 .card-side.back {
   background: linear-gradient(to bottom, #007bff, #6a11cb); /* Blue to Purple Gradient */ 
   transform: rotateY(180deg); /* Default back position */
@@ -267,7 +235,6 @@ main {
   color: white;
   text-align: center;
   box-sizing: border-box;
-
 }
 
 /* Rotate card on button click */
@@ -279,8 +246,7 @@ main {
   transform: rotateY(0deg);
 }
 
-
-/* ------Card Image------ */
+/* -----Card Image----- */
 .card-image {
   background-color: #007bff; /* Fallback color in case the background image doesn't load */
   position: relative;
@@ -295,14 +261,13 @@ main {
   bottom: -20px; /* Pulls the image halfway out of the card-image section */
   left: 50%;
   transform: translateX(-50%);
-  width: 100px; /* Width of the circular image */
-  height: 100px; /* Height of the circular image */
+  width: 100px; 
+  height: 100px; 
   border-radius: 50%; /* Makes the image circular */
   overflow: hidden; /* Ensures the image fits within the circle */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
   background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
   padding: 4px; /* Space for the rainbow border */
-
 }
 
 .image-container img {
@@ -314,9 +279,7 @@ main {
   background-color: white; /* Fallback for transparency */
 }
 
-
-
-/* ------Card Info------ */
+/* -----Card Info----- */
 .card-info {
   text-align: center;
   padding: 20px;
@@ -331,10 +294,19 @@ main {
   margin: 5px 0 15px;
 }
 
+.tagline {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #d1d1d1;
+  margin-bottom: 10px;
+}
+
+/* -----Social Icons----- */
 .social-icons {
-  height: 50px;
   display: flex;
   justify-content: center;
+  gap: 15px;
+  margin: 15px 0;
 }
 
 .icon {
@@ -353,7 +325,7 @@ main {
   color: white;
 }
 
-/* ------Flip Button------ */
+/* -----Flip Button----- */
 .flip-button {
   padding: 10px 15px;
   background-color: white;
@@ -370,7 +342,7 @@ main {
   color: white;
 }
 
-/* Back Side Content */
+/* -----Back Side Content----- */
 .bio-content {
   text-align: center;
 }
@@ -382,10 +354,9 @@ main {
 }
 
 .bio-content p {
-  font-size: 1rem;
-  color: #f0f0f0;
-  line-height: 1.5;
   margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .bio-content p:last-child {
@@ -393,42 +364,13 @@ main {
   color: #c0c0c0;
 }
 
-/* ------Social Icons Styling------ */
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 15px 0;
+/* -----Clean-ups----- */
+.rotating-card::after {
+  /* Removed unused radial gradient and non-working shine effect */
+  display: none;
 }
 
-.social-icons .icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  background-color: #a5b1be;
-  border-radius: 50%;
-  text-decoration: none;
-  transition: transform 0.3s, background-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 20px; /* For Font Awesome or Material Icons */
-}
 
-.social-icons .icon:hover {
-  transform: scale(1.1);
-  background-color: #007bff;
-  color: white;
-}
-
-.social-icons .icon span {
-  font-size: 24px;
-  color: #007bff;
-}
-
-.social-icons .icon:hover span {
-  color: white;
-}
 
 
 /* ----------Products---------- */
