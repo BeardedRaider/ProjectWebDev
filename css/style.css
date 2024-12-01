@@ -3,7 +3,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7;
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text color */
 }
 
 header {
@@ -93,7 +94,8 @@ header {
 main {
   flex: 1; /* Main content expands to fill the space */
   padding: 20px;
-  background-color: #f7f7f7;
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text color */
   overflow-y: auto;
 }
 
@@ -160,19 +162,69 @@ main {
   justify-content: center;
   align-items: center;
   height: 70vh;
+  perspective: 1000px;
+  position: relative;
 }
 
 .rotating-card {
+  position: relative;
   width: 300px;
   height: 400px;
   perspective: 1000px;
-  position: relative;
   transform-style: preserve-3d;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  border-radius: 10px;
 }
 
+/* Glow Effect */
+.rotating-card-container:hover .rotating-card {
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+}
+
+.rotating-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--shine-x) var(--shine-y),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 60%);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Holographic Shine with Rainbow Colors */
+.rotating-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%; /* Oversized for smooth mouse tracking */
+  height: 300%;
+  background: radial-gradient(circle, 
+    rgba(255, 0, 0, 0.2), 
+    rgba(0, 255, 0, 0.2), 
+    rgba(0, 0, 255, 0.2)
+  );
+  pointer-events: none;
+  transform: translate(-150%, -150%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+
+/* Show the shine when hovering */
+.rotating-card-container:hover .rotating-card::after {
+  opacity: 1;
+}
+
+/*-----card sides----- */
 .card-side {
   width: 100%;
   height: 100%;
@@ -181,25 +233,29 @@ main {
   transition: transform 0.6s ease-in-out;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/*-----card front----- */
 .card-side.front {
   background-color: #007bff;
+  transform: rotateY(0deg); /* Default front position */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transform: rotateY(0deg); /* Default front position */
 }
 
+/*-----card back----- */
 .card-side.back {
-  background-color: #fff;
+  background: linear-gradient(to bottom, #007bff, #6a11cb); /* Blue to Purple Gradient */ 
   transform: rotateY(180deg); /* Default back position */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  color: white;
+  text-align: center;
   box-sizing: border-box;
+
 }
 
 /* Rotate card on button click */
@@ -211,9 +267,11 @@ main {
   transform: rotateY(0deg);
 }
 
+
 /* ------Card Image------ */
 .card-image {
-  background-color: #007bff; /* Fallback color in case the background image doesn't load */  position: relative;
+  background-color: #007bff; /* Fallback color in case the background image doesn't load */
+  position: relative;
   background-image: url('/images/invade.jpg'); /* Replace with the path to your background image */
   background-size: cover; /* Ensures the image covers the entire area */
   background-position: center; /* Centers the image within the section */
@@ -231,7 +289,7 @@ main {
   overflow: hidden; /* Ensures the image fits within the circle */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
   background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
-  padding: 3px; /* Space for the rainbow border */
+  padding: 4px; /* Space for the rainbow border */
 
 }
 
@@ -262,17 +320,16 @@ main {
 }
 
 .social-icons {
+  height: 50px;
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
 }
 
 .icon {
   text-decoration: none;
   color: white;
   font-size: 1.5rem;
-  border: 1px solid white;
+  border: 2px solid white;
   padding: 5px 8px;
   border-radius: 50%;
   display: inline-block;
@@ -280,8 +337,8 @@ main {
 }
 
 .icon:hover {
-  background-color: white;
-  color: #007bff;
+  background-color: #007bff;
+  color: white;
 }
 
 /* ------Flip Button------ */
@@ -308,12 +365,20 @@ main {
 
 .bio-content h2 {
   margin-bottom: 10px;
-  color: #007bff;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
 }
 
 .bio-content p {
-  font-size: 0.95rem;
-  color: #333;
+  font-size: 1rem;
+  color: #f0f0f0;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.bio-content p:last-child {
+  font-style: italic;
+  color: #c0c0c0;
 }
 
 /* ------Social Icons Styling------ */
@@ -354,7 +419,7 @@ main {
 }
 
 
-/* ------Products------ */
+/* ----------Products---------- */
 .products {
   padding: 20px;
   text-align: center;

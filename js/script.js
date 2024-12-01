@@ -4,11 +4,6 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function () {
-  $(".flip-button").click(function () {
-    $(".rotating-card").toggleClass("flipped");
-  });
-});
 
 $(document).ready(function() {
   const products = [
@@ -95,15 +90,23 @@ const cardContainer = document.querySelector('.rotating-card-container');
 const card = document.querySelector('.rotating-card');
 const flipButtons = document.querySelectorAll('.flip-button');
 
-// Hover Axis-Following Animation
+// Hover Axis-Following Animation with Shine
 cardContainer.addEventListener('mousemove', (e) => {
   const { left, top, width, height } = cardContainer.getBoundingClientRect();
   const x = (e.clientX - left - width / 2) / 10;
   const y = -(e.clientY - top - height / 2) / 10;
 
+  // Update card rotation
   card.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+
+  // Calculate and update shine position
+  const shineX = (e.clientX - left) / width * 100;
+  const shineY = (e.clientY - top) / height * 100;
+  card.style.setProperty('--shine-x', `${shineX}%`);
+  card.style.setProperty('--shine-y', `${shineY}%`);
 });
 
+// Reset Rotation on Mouse Leave
 cardContainer.addEventListener('mouseleave', () => {
   card.style.transform = 'rotateX(0deg) rotateY(0deg)';
 });
