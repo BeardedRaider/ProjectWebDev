@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <link rel="stylesheet" href="css/style.css" />
+
     <title>HomePage</title>
   </head>
   <body>
@@ -27,6 +27,46 @@
             </ul>
         </nav>
     </header>
+
+    <aside class="vertical-sidebar">
+      <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </aside>
+
+    <main>
+      <section id="about" class="rotating-card">
+        <div class="card">
+          <div class="card-front">
+            <img src="images/profile.jpg" alt="Profile Image" />
+            <h3>Shane Cummings</h3>
+            <p>Web Developer</p>
+            <button class="info-btn">More About Me</button>
+          </div>
+          <div class="card-back">
+            <h3>About Me</h3>
+            <p>
+              Hi, I'm Shane Cummings, a passionate web developer with interests in
+              front-end design and interactive applications.
+            </p>
+            <button class="info-btn">Back</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>Explore my past and ongoing web development projects here.</p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Feel free to reach out to me via my contact form.</p>
+      </section>
+      
+    </main>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
