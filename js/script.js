@@ -90,23 +90,32 @@ const cardContainer = document.querySelector('.rotating-card-container');
 const card = document.querySelector('.rotating-card');
 const flipButtons = document.querySelectorAll('.flip-button');
 
-// Hover Axis-Following Animation with Shine
+// Hover Axis-Following Animation
 cardContainer.addEventListener('mousemove', (e) => {
   const { left, top, width, height } = cardContainer.getBoundingClientRect();
-  const x = (e.clientX - left - width / 2) / 10;
-  const y = -(e.clientY - top - height / 2) / 10;
 
-  // Update card rotation
-  card.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+  // Reduced strength by increasing the divisor
+  const x = (e.clientX - left - width / 2) / 20; // Was /10
+  const y = -(e.clientY - top - height / 2) / 20; // Was /10
 
-  // Calculate and update shine position
-  const shineX = (e.clientX - left) / width * 100;
-  const shineY = (e.clientY - top) / height * 100;
+  // Limit the maximum tilt angle
+  const maxTilt = 10; // Maximum tilt in degrees
+  const tiltX = Math.max(-maxTilt, Math.min(maxTilt, x));
+  const tiltY = Math.max(-maxTilt, Math.min(maxTilt, y));
+
+  // Update card rotation for axis-following effect
+  card.style.transform = `rotateX(${tiltY}deg) rotateY(${tiltX}deg)`;
+
+  // Calculate shine position
+  const shineX = ((e.clientX - left) / width) * 100;
+  const shineY = ((e.clientY - top) / height) * 100;
+
+  // Update shine position
   card.style.setProperty('--shine-x', `${shineX}%`);
   card.style.setProperty('--shine-y', `${shineY}%`);
 });
 
-// Reset Rotation on Mouse Leave
+// Reset position on mouse leave
 cardContainer.addEventListener('mouseleave', () => {
   card.style.transform = 'rotateX(0deg) rotateY(0deg)';
 });
@@ -117,4 +126,5 @@ flipButtons.forEach((button) =>
     card.classList.toggle('flipped');
   })
 );
+
   
