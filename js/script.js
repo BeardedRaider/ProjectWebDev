@@ -1,3 +1,26 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const card = document.querySelector(".rotating-card");
+
+  // Ensure the card exists to avoid errors
+  if (card) {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      // Update CSS variables for the shine effect
+      card.style.setProperty("--shine-x", `${x}%`);
+      card.style.setProperty("--shine-y", `${y}%`);
+    });
+
+    card.addEventListener("mouseleave", () => {
+      // Reset the shine effect when the mouse leaves the card
+      card.style.setProperty("--shine-x", "50%");
+      card.style.setProperty("--shine-y", "50%");
+    });
+  }
+});
+
 $(document).ready(function () {
   /*** Products & Cart Management ***/
   const products = [
