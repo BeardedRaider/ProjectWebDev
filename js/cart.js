@@ -10,36 +10,24 @@ $(document).ready(function () {
     renderCartItems();
     updateCartSummary();
 
-    // Clear All Button Logic (show the custom modal)
+    // Clear All Button Logic
     $("#clearCartButton").click(function () {
-      // Show the modal asking for confirmation
-      $("#clearCartModal").fadeIn();
+      const confirmClear = confirm("Are you sure you want to clear the cart?");
+      if (confirmClear) {
+        cart = []; // Empty the cart array
+        localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+        renderCartItems(); // Re-render cart items
+        updateCartSummary(); // Update cart summary
+        updateCartCount(); // Update cart count in the navbar
+        alert("Your cart has been cleared.");
+      }
     });
 
-    // If the user confirms clearing the cart
-    $("#confirmClearCart").click(function () {
-      cart = []; // Empty the cart array
-      localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
-      renderCartItems(); // Re-render cart items
-      updateCartSummary(); // Update cart summary
-      updateCartCount(); // Update cart count in the navbar
-      $("#clearCartModal").fadeOut(); // Close the modal
-      showToast("Your cart has been cleared."); // Show toaster notification
+    // Checkout Button Logic
+    $("#checkoutButton").click(function () {
+      // Redirect to checkout page
+      window.location.href = "checkout.html"; // Update with your actual checkout page path
     });
-
-    // If the user cancels the action
-    $("#cancelClearCart").click(function () {
-      $("#clearCartModal").fadeOut(); // Close the modal without clearing the cart
-    });
-
-    // Show the toast notification
-    function showToast(message) {
-      $("#toast p").text(message); // Set the message text
-      $("#toast").addClass("show"); // Show the toast
-      setTimeout(function () {
-        $("#toast").removeClass("show"); // Hide the toast after 3 seconds
-      }, 3000);
-    }
 
     // Function to render cart items
     function renderCartItems() {
@@ -49,7 +37,6 @@ $(document).ready(function () {
       if (cart.length === 0) {
         cartItemsContainer.html("<p>Your cart is empty.</p>");
         $("#checkoutButton, #clearCartButton").prop("disabled", true); // Disable buttons if cart is empty
-        showToast("Your cart is empty!"); // Show toaster notification for empty cart
         return;
       }
 
@@ -124,3 +111,5 @@ $(document).ready(function () {
     $("#cartCount").text(totalCount);
   }
 });
+
+
