@@ -1,11 +1,5 @@
-$(document).ready(function() {
-  $(".info-btn").click(function() {
-    $(this).closest(".card").toggleClass("flipped");
-  });
-});
-
-
-$(document).ready(function() {
+$(document).ready(function () {
+  /*** Products & Cart Management ***/
   const products = [
     { id: 1, name: "Product 1", price: 10 },
     { id: 2, name: "Product 2", price: 15 },
@@ -19,8 +13,8 @@ $(document).ready(function() {
     { id: 10, name: "Product 10", price: 55 }
   ];
 
-  // Display products
-  products.forEach(product => {
+  // Display products on the products page
+  products.forEach((product) => {
     $("#productList").append(`
       <div class="product">
         <h3>${product.name}</h3>
@@ -30,101 +24,160 @@ $(document).ready(function() {
     `);
   });
 
-  // Retrieve cart from localStorage or set up a new one
+  // Initialize cart from localStorage or use empty cart if not available
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   updateCartCount();
 
-  // Handle "Add to Cart" button clicks with animation
-  $(".addToCart").click(function() {
+  // Handle "Add to Cart" button clicks
+  $(".addToCart").click(function () {
     const productId = $(this).data("id");
-    const product = products.find(p => p.id === productId);
-
-    // Add product to cart
-    addToCart(product);  // Consolidate quantity for items already in cart
-    animateCartIcon();   // Animate cart icon on addition
+    const product = products.find((p) => p.id === productId);
+    addToCart(product);
+    animateCartIcon();
   });
 
-  // Function to add item to cart with quantity consolidation
+  // Function to add product to the cart
   function addToCart(product) {
-    const existingItem = cart.find(item => item.id === product.id);
+    const existingItem = cart.find((item) => item.id === product.id);
     if (existingItem) {
-        // If item already in cart, increase its quantity
-        existingItem.quantity += 1;
+      existingItem.quantity += 1; // Increase quantity if item already in cart
     } else {
-    // Add new item with quantity property set to 1
-    cart.push({ ...product, quantity: 1 });
+      cart.push({ ...product, quantity: 1 }); // Add new item to the cart
     }
-    localStorage.setItem("cart", JSON.stringify(cart));  // Save to localStorage
-    updateCartCount();
+    localStorage.setItem("cart", JSON.stringify(cart)); // Save cart to localStorage
+    updateCartCount(); // Update cart count in the navbar
   }
 
-  // Function to update the cart count in the navbar
+  // Function to update cart count in the navbar
   function updateCartCount() {
     const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
     $("#cartCount").text(totalCount);
   }
 
-  // Function to animate the cart icon on item addition
+  // Function to animate the cart icon when item is added
   function animateCartIcon() {
     $("#cartCount")
-    .css("background-color", "red")  // Ensure background color remains red
-    .animate({
-      fontSize: "20px",
-      opacity: 0.8
-    }, 200)
-    .animate({
-      fontSize: "12px",
-      opacity: 1
-    }, 200)
-    .animate({
-      top: "-5px"
-    }, 100)
-    .animate({
-      top: "0px"
-    }, 100);
-}
+      .css("background-color", "red")  // Ensure background color remains red
+      .animate({ fontSize: "20px", opacity: 0.8 }, 200)
+      .animate({ fontSize: "12px", opacity: 1 }, 200)
+      .animate({ top: "-5px" }, 100)
+      .animate({ top: "0px" }, 100);
+  }
+
+  /*** Cart Page Logic ***/
+  if ($("#cartItems").length > 0) {
+    renderCartItems();
+    updateCartSummary();
+
+    // Clear All Button Logic
+    $("#clearCartButton").click(function () {
+      const confirmClear = confirm("Are you sure you want to clear the cart?");
+      if (confirmClear) {
+        cart = []; // Clear the cart array
+        localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+        renderCartItems(); // Re-render cart items
+        updateCartSummary(); // Update cart summary
+        updateCartCount(); // Update cart count in the navbar
+        alert("Your cart has been cleared.");
+      }
+    });
+
+    // Render cart items on the page
+    function renderCartItems() {
+      const cartItemsContainer = $("#cartItems");
+      cartItemsContainer.empty(); // Clear existing cart items
+
+      if (cart.length === 0) {
+        cartItemsContainer.html("<p>Your cart is empty.</p>");
+        $("#checkoutButton, #clearCartButton").prop("disabled", true); // Disable buttons if cart is empty
+        return;
+      }
+
+      // Enable buttons if cart is not empty
+      $("#checkoutButton, #clearCartButton").prop("disabled", false);
+
+      // Loop through cart and display each item
+      cart.forEach((item, index) => {
+        cartItemsContainer.append(`
+          <div class="cart-item">
+            <div class="cart-item-details">
+              <h3>${item.name}</h3>
+              <p>Price: $${item.price}</p>
+              <div class="quantity-controls">
+                <button class="quantity-btn minus" data-index="${index}">-</button>
+                <span class="quantity-display">${item.quantity}</span>
+                <button class="quantity-btn plus" data-index="${index}">+</button>
+              </div>
+            </div>
+            <div class="cart-item-controls">
+              <button class="remove-item" data-index="${index}">Remove</button>
+            </div>
+          </div>
+        `);
+      });
+
+      // Attach event listeners for quantity controls and remove buttons
+      $(".quantity-btn.plus").click(function () {
+        const index = $(this).data("index");
+        cart[index].quantity += 1;
+        updateCart();
+      });
+
+      $(".quantity-btn.minus").click(function () {
+        const index = $(this).data("index");
+        if (cart[index].quantity > 1) {
+          cart[index].quantity -= 1;
+        } else {
+          cart.splice(index, 1); // Remove item if quantity is 0
+        }
+        updateCart();
+      });
+
+      $(".remove-item").click(function () {
+        const index = $(this).data("index");
+        cart.splice(index, 1); // Remove item from cart
+        updateCart();
+      });
+    }
+
+    // Function to update cart (save to localStorage, re-render items and update summary)
+    function updateCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCartItems();
+      updateCartSummary();
+      updateCartCount();
+    }
+
+    // Update the cart summary (total items and total cost)
+    function updateCartSummary() {
+      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+      const totalCost = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+      $("#totalItems").text(totalItems);
+      $("#totalCost").text(totalCost.toFixed(2));
+    }
+  }
+
+  /*** Rotating Card Animation ***/
+  const cardContainer = document.querySelector(".rotating-card-container");
+  const card = document.querySelector(".rotating-card");
+  const flipButtons = document.querySelectorAll(".flip-button");
+
+  cardContainer?.addEventListener("mousemove", (e) => {
+    const { left, top, width, height } = cardContainer.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) / 20;
+    const y = -(e.clientY - top - height / 2) / 20;
+
+    card.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+  });
+
+  cardContainer?.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0deg) rotateY(0deg)";
+  });
+
+  flipButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+    })
+  );
 });
-
-/*----- card animation -----*/
-const cardContainer = document.querySelector('.rotating-card-container');
-const card = document.querySelector('.rotating-card');
-const flipButtons = document.querySelectorAll('.flip-button');
-
-// Hover Axis-Following Animation
-cardContainer.addEventListener('mousemove', (e) => {
-  const { left, top, width, height } = cardContainer.getBoundingClientRect();
-
-  // Reduced strength by increasing the divisor
-  const x = (e.clientX - left - width / 2) / 20; // Was /10
-  const y = -(e.clientY - top - height / 2) / 20; // Was /10
-
-  // Limit the maximum tilt angle
-  const maxTilt = 10; // Maximum tilt in degrees
-  const tiltX = Math.max(-maxTilt, Math.min(maxTilt, x));
-  const tiltY = Math.max(-maxTilt, Math.min(maxTilt, y));
-
-  // Update card rotation for axis-following effect
-  card.style.transform = `rotateX(${tiltY}deg) rotateY(${tiltX}deg)`;
-
-  // Calculate shine position
-  const shineX = ((e.clientX - left) / width) * 100;
-  const shineY = ((e.clientY - top) / height) * 100;
-
-  // Update shine position
-  card.style.setProperty('--shine-x', `${shineX}%`);
-  card.style.setProperty('--shine-y', `${shineY}%`);
-});
-
-// Reset position on mouse leave
-cardContainer.addEventListener('mouseleave', () => {
-  card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-});
-
-// Flip Animation
-flipButtons.forEach((button) =>
-  button.addEventListener('click', () => {
-    card.classList.toggle('flipped');
-  })
-);
-
-  

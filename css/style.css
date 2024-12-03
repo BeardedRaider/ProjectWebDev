@@ -370,36 +370,84 @@ main {
   display: none;
 }
 
-
-
-
-/* ----------Products---------- */
+/* ----------Products Page---------- */
 .products {
-  padding: 20px;
+  padding: 40px;
   text-align: center;
 }
 
+.products h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.products h2 {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  color: #007bff;
+}
+
+/* Product card styles */
 .product {
   display: inline-block;
   border: 1px solid #ddd;
   margin: 10px;
   padding: 15px;
-  width: 200px;
+  width: 220px;
   background-color: white;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product:hover {
+  transform: translateY(-10px); /* Hover lift effect */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product h3 {
+  font-size: 1.2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.product p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 button {
   padding: 8px 12px;
-  margin-top: 10px;
   color: white;
   background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+/* Add smooth animation for products loading */
+.product {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Floating animation for the cart icon */
@@ -415,11 +463,13 @@ button:hover {
   }
 }
 
+
 .animate-cart {
   animation: floatCart 0.5s ease;
 }
 
 /* ----Cart Page Styles---- */
+
 .header-container h1 {
   text-align: center;
   margin-top: 20px;
@@ -487,6 +537,23 @@ button:hover {
   cursor: pointer;
 }
 
+.clear-cart {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.clear-cart:hover {
+  background-color: #e60000;
+}
+
 #checkoutButton {
   display: block;
   width: 100%;
@@ -504,7 +571,7 @@ button:hover {
   background-color: #218838;
 }
 
-/* Quantity Controls */
+/*** Quantity Controls ***/
 .quantity-controls {
   display: flex;
   align-items: center;
@@ -552,7 +619,99 @@ button:hover {
   background-color: #e60000; /* Darker red on hover */
 }
 
-/* ------ Checkout Page Styles ------ */
+/****** Checkout Page Styles ******/
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6); /* Dark background overlay */
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.modal-content {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-btn:hover {
+  background-color: #0056b3;
+}
+
+.modal-btn.cancel {
+  background-color: #e60000;
+}
+
+.modal-btn.cancel:hover {
+  background-color: #b30000;
+}
+
+/* Toast Notification Styles */
+#toast {
+  display: none;
+  position: fixed;
+  top: 100px;
+  right: 20px; /* Positioned at top right */
+  background-color: #28a745; /* Green color */
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#toast p {
+  margin: 0;
+  font-weight: bold;
+}
+
+#toast.show {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#toast.hide {
+  opacity: 0;
+}
+
+/* For better responsiveness, modal will be smaller on mobile */
+@media (max-width: 600px) {
+  .modal {
+    width: 90%;
+    padding: 15px;
+  }
+
+  #toast {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
 
 /* Checkout Container */
 .checkout-container {
