@@ -40,3 +40,30 @@ $(document).ready(function () {
     countSpacesBeforeUWS(); // Process the text when the button is clicked
     });
 });
+
+$(document).ready(function () {
+  // Datepicker
+  $("#reviewDate").datepicker({
+    showAnim: "slideDown",
+    dateFormat: "dd-mm-yy"
+  });
+
+  // Accordion
+  $("#reviewAccordion").accordion({
+    collapsible: true,
+    heightStyle: "content"
+  });
+
+  // Rating Slider
+  $("#ratingSlider").slider({
+    min: 1,
+    max: 5,
+    value: 3, // Default value
+    step: 1, // Ensure the slider snaps to markers
+    slide: function(event, ui) {// Update the slider value display when the slider is moved even shows its not used, but it makes the slider work.
+        // Update the slider value display when the slider is moved
+        $("#sliderValue").text(ui.value);
+    }
+});
+});
+

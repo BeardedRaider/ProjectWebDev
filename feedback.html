@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback Page</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/feedback.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 <body>
   <header>
@@ -39,21 +41,67 @@
       <div class="feedback-container">
         <h1 class="page-title">Feedback on UWS University</h1>
         <p>Provide your feedback about UWS University below. We'll process the text to count spaces before the last occurrence of the word "UWS".</p>
-
+    
         <div class="feedback-form">
           <textarea id="feedbackText" placeholder="Write about UWS University here..." rows="5"></textarea>
           <button id="processButton" class="process-button">Process Feedback</button>
-
           <div id="outputResult">
             <p id="resultMessage"></p>
           </div>
         </div>
       </div>
+    
+      <!-- Mini Review Section -->
+      <div class="review-section">
+        <h2 class="review-title">Mini Review of Shopping Site</h2>
+        <p>Provide your thoughts on the shopping experience. Use the interactive elements below:</p>
+    
+        <!-- jQuery UI Elements -->
+        <div class="review-elements">
+          <!-- Datepicker -->
+          <div>
+            <label for="reviewDate">Select a date:</label>
+            <input type="text" id="reviewDate" class="datepicker" placeholder="Pick a date">
+          </div>
+    
+          <!-- Accordion -->
+          <div id="reviewAccordion" class="accordion">
+            <h3>Ease of Navigation</h3>
+            <div>
+              <p>Share your thoughts about how easy it was to find what you were looking for.</p>
+            </div>
+            <h3>Product Quality</h3>
+            <div>
+              <p>Tell us about the quality of the products you purchased.</p>
+            </div>
+            <h3>Checkout Experience</h3>
+            <div>
+              <p>Provide feedback about the checkout process, including payment and delivery options.</p>
+            </div>
+          </div>
+    
+          <!-- Draggable slider -->
+          <div id="ratingSliderSection" class="slider-section">
+            <label for="ratingSlider">Rate your experience (1-5 stars):</label>
+            <div id="ratingSlider"></div>
+            <div class="slider-markers">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+            </div>
+            <p>Your Rating: <span id="sliderValue">3</span> ⭐</p>
+          </div>
+        </div>
+      </div>
     </main>
+    
   </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="js/feedback.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 </body>
 </html>
 
