@@ -1,0 +1,134 @@
+/* ----------------Products Page---------------- */
+.products {
+    padding: 40px;
+    text-align: center;
+}
+
+.products h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.products h2 {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: #007bff;
+}
+
+/* Product card styles */
+.product {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 15px;
+    width: 220px;
+    background-color: white;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product:hover {
+    transform: translateY(-10px); /* Hover lift effect */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product h3 {
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.product p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 8px 12px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Add smooth animation for products loading */
+.product {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+    opacity: 0;
+    transform: translateY(20px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+/* Floating animation for the cart icon */
+@keyframes floatCart {
+    0% {
+    transform: translateY(0);
+    }
+    50% {
+    transform: translateY(-5px);
+    }
+    100% {
+    transform: translateY(0);
+    }
+}
+.animate-cart {
+    animation: floatCart 0.5s ease;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar input {
+    width: 50%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.no-products-found {
+    font-size: 3.5rem;
+    color: white;
+    margin: 20px auto;
+    text-align: center;
+}
+
+
+.reset-button {
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reset-button:hover {
+    background-color: #0056b3;
+}

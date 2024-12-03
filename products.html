@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/products.css" />
     <title>HomePage</title>
   </head>
   <body>
@@ -38,18 +39,28 @@
       </aside>
 
       <main>
+        <section>
+          <!-- search bar  -->
+          <div class="search-bar">
+            <input type="text" id="productSearch" placeholder="Search for a product..." />
+          </div>
+          <p id="noProductsMessage" style="display: none; color: red; text-align: center; font-size: 1.2rem;">No products found.</p>
+        </section>
         <section class="products">
-        <h1>Welcome to Our Basic Shop</h1>
-          <h2>Products</h2>
+          <h1 id="welcomeMessage">Welcome to Our Basic Shop</h1>
+          <h2 id="productsHeading">Products</h2>
+          
           <div id="productList">
             <!-- Products will be added here dynamically -->
           </div>
+          <button id="resetSearch" class="reset-button" style="display: none;">Go Back</button>
         </section>
       </main>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <script src="js/products.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
