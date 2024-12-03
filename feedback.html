@@ -61,7 +61,8 @@
           <!-- Datepicker -->
           <div>
             <label for="reviewDate">Select a date:</label>
-            <input type="text" id="reviewDate" class="datepicker" placeholder="Pick a date">
+            <input type="text" id="reviewDate" class="datepicker" placeholder="Click to Pick a date">
+            <!-- could choose a different otion so the year could be changed better, but as this is just to testing, this will work fine -->
           </div>
     
           <!-- Accordion -->
@@ -69,20 +70,51 @@
             <h3>Ease of Navigation</h3>
             <div>
               <p>Share your thoughts about how easy it was to find what you were looking for.</p>
+              <div id="ratingStars1" class="rating-stars">
+                <p>Rate Navigation (1-5 stars, 1 being bad and 5 execellent!): <span id="starValue1">0</span></p>
+                <div class="stars">
+                  <span class="star" data-value="1">&#9733;</span>
+                  <span class="star" data-value="2">&#9733;</span>
+                  <span class="star" data-value="3">&#9733;</span>
+                  <span class="star" data-value="4">&#9733;</span>
+                  <span class="star" data-value="5">&#9733;</span>
+                </div>
+              </div>
             </div>
             <h3>Product Quality</h3>
             <div>
               <p>Tell us about the quality of the products you purchased.</p>
+              <div id="ratingStars2" class="rating-stars">
+                <p>Rate Product Quality (1-5 , 1 being bad and 5 execellent!stars): <span id="starValue2">0</span></p>
+                <div class="stars">
+                  <span class="star" data-value="1">&#9733;</span>
+                  <span class="star" data-value="2">&#9733;</span>
+                  <span class="star" data-value="3">&#9733;</span>
+                  <span class="star" data-value="4">&#9733;</span>
+                  <span class="star" data-value="5">&#9733;</span>
+                </div>
+              </div>
             </div>
             <h3>Checkout Experience</h3>
             <div>
               <p>Provide feedback about the checkout process, including payment and delivery options.</p>
+              <div id="ratingStars3" class="rating-stars">
+                <p>Rate Checkout (1-5 stars):, 1 being bad and 5 execellent! <span id="starValue3">0</span></p>
+                <div class="stars">
+                  <span class="star" data-value="1">&#9733;</span>
+                  <span class="star" data-value="2">&#9733;</span>
+                  <span class="star" data-value="3">&#9733;</span>
+                  <span class="star" data-value="4">&#9733;</span>
+                  <span class="star" data-value="5">&#9733;</span>
+                </div>
+              </div>
             </div>
           </div>
     
           <!-- Draggable slider -->
           <div id="ratingSliderSection" class="slider-section">
-            <label for="ratingSlider">Rate your experience (1-5 stars):</label>
+            <label for="ratingSlider">Rate your overall experience on the site today! (1-5 stars):</label>
+            <p>Move the slider to choose between 1 & 5. (1 being bad and 5 being excellent!)</p>
             <div id="ratingSlider"></div>
             <div class="slider-markers">
               <span>1</span>
@@ -92,6 +124,9 @@
               <span>5</span>
             </div>
             <p>Your Rating: <span id="sliderValue">3</span> ⭐</p>
+          </div>
+          <div class="submit-review">
+            <button id="submitReviewButton" class="submit-button">Submit Review</button>
           </div>
         </div>
       </div>

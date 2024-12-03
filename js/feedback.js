@@ -42,10 +42,12 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  // Datepicker
+  // Datepicker with custom format (dd-mm-yy)
   $("#reviewDate").datepicker({
-    showAnim: "slideDown",
-    dateFormat: "dd-mm-yy"
+    dateFormat: "dd-mm-yy", // Display format
+    showAnim: "slideDown", // Animation when showing the datepicker
+    changeMonth: true, // Allow user to change month
+    changeYear: true, // Allow user to change year
   });
 
   // Accordion
@@ -65,5 +67,58 @@ $(document).ready(function () {
         $("#sliderValue").text(ui.value);
     }
 });
+
+    $(document).ready(function () {
+        // Star Rating Event Handler
+        $(".star").click(function () {
+            var rating = $(this).data("value");
+            var sectionId = $(this).closest(".rating-stars").attr("id");
+            
+            // Update the selected stars
+            $("#" + sectionId + " .star").each(function () {
+                $(this).removeClass("selected");
+            });
+
+            $("#" + sectionId + " .star").each(function () {
+                if ($(this).data("value") <= rating) {
+                    $(this).addClass("selected");
+                }
+            });
+
+            // Update the rating number above the stars
+            $("#" + sectionId + " .rating-value").text(rating);
+        });
+    });
+
+    $(document).ready(function () {
+        // Handle star rating clicks
+        $(".star").click(function () {
+            var rating = $(this).data("value");
+            var sectionId = $(this).closest(".rating-stars").attr("id");
+    
+            $("#" + sectionId + " .star").each(function () {
+                $(this).removeClass("selected");
+            });
+    
+            $("#" + sectionId + " .star").each(function () {
+                if ($(this).data("value") <= rating) {
+                    $(this).addClass("selected");
+                }
+            });
+    
+            $("#" + sectionId + " .rating-value").text(rating);
+        });
+    
+        // Handle Submit Review Button click
+        $("#submitReviewButton").click(function () {
+            // Mimic form submission behavior
+            alert("Thank you for your review! Your feedback has been submitted.");
+            
+            // Optionally, clear the stars and reset the rating after submission
+            $(".star").removeClass("selected");
+            $(".rating-value").text("0");
+        });
+    });
+
 });
 
