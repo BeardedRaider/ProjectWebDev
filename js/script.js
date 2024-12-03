@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const card = document.querySelector(".rotating-card");
+    // Add class to trigger fade-in animation
+    const introSection = document.querySelector('.intro-section');
+    introSection.classList.add('visible');
 
   // Ensure the card exists to avoid errors
   if (card) {
