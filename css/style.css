@@ -805,3 +805,148 @@ button:hover {
     font-size: 1rem;
   }
 }
+
+/*-----FEEDBACK PAGE -----*/
+.feedback-container {
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+.page-title {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Feedback Paragraph */
+.feedback-container p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+}
+
+/* Feedback Textarea Styling */
+textarea {
+  width: 100%;
+  align-items: center;
+  padding: 1px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #2c2c2c;
+  color: #fff;
+  resize: none;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Process Button Styling */
+.process-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.process-button:hover {
+  background-color: #218838;
+}
+
+/* Output Result */
+#outputResult {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #343a40;
+  border-radius: 5px;
+}
+
+#resultMessage {
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+#resultMessage {
+  animation: highlightResult 1s ease;
+}
+
+@keyframes highlightResult {
+  from {
+    background-color: rgba(255, 255, 0, 0.5); /* Light yellow highlight */
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+/* Highlight styles for spaces */
+.highlight {
+  background-color: #ffdd57; /* Yellow background */
+  display: inline-block;
+  padding: 0 2px; /* Optional: Add some padding for better visibility */
+}
+
+/* Style the highlighted text output */
+.highlighted-text {
+  font-family: "Courier New", Courier, monospace; /* Monospace font for better visibility */
+  background-color: #5d5d5e; /* Light background */
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  white-space: pre-wrap; /* Preserve spaces and line breaks */
+}
+
+
+/* Clear Modal Styling (Hidden) */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal.show {
+  display: block;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  display: none;
+  opacity: 0;
+  z-index: 999;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.toast.show {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}

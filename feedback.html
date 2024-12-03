@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout</title>
+  <title>Feedback Page</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -22,7 +22,6 @@
               <span id="cartCount">0</span></a>
             </li>
             <li><a href="feedback.html" class="active">Feedback</a></li>
-            
         </ul>
     </nav>
   </header>
@@ -37,14 +36,25 @@
     </aside>
 
     <main>
-      
+      <div class="feedback-container">
+        <h1 class="page-title">Feedback on UWS University</h1>
+        <p>Provide your feedback about UWS University below. We'll process the text to count spaces before the last occurrence of the word "UWS".</p>
+
+        <div class="feedback-form">
+          <textarea id="feedbackText" placeholder="Write about UWS University here..." rows="5"></textarea>
+          <button id="processButton" class="process-button">Process Feedback</button>
+
+          <div id="outputResult">
+            <p id="resultMessage"></p>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
-
-
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/feedback.js"></script>
 </body>
 </html>
+
 
